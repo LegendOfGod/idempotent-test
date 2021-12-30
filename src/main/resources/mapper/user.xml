@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.idempotencytest.mapper.UserMapper">
+    <update id="updateUser" parameterType="com.example.idempotencytest.entity.User">
+        update t_user
+        set userName = #{userName}
+        where id = #{id}
+    </update>
+
+    <select id="getUserById" resultType="com.example.idempotencytest.entity.User">
+        select *
+        from t_user
+        where id = #{id} for update
+    </select>
+</mapper>
